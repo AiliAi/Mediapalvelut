@@ -4,7 +4,7 @@ const MediaRow = (props) => {
   return (
     <tr>
       <td>
-        <img src={props.file.thumbnails.w160} alt={props.file.title}  />
+        <img src={props.file.thumbnails.w160} alt={props.file.title} />
       </td>
       <td>
         <h3>{props.file.title} </h3>
@@ -18,7 +18,7 @@ const MediaRow = (props) => {
 };
 
 MediaRow.propTypes = {
-    file: PropTypes.object,
-}
+  file: PropTypes.object,
+};
 
 export default MediaRow;
