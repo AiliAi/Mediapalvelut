@@ -1,4 +1,4 @@
-Open [https://users.metropolia.fi/~ailip/react/http-b/](https://users.metropolia.fi/~ailip/react/http-b/) to view it in the browser.
+Open [https://users.metropolia.fi/~ailip/react/ajax/](https://users.metropolia.fi/~ailip/react/ajax/) to view it in the browser.
 
 # Getting Started with Create React App
 
