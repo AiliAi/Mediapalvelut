@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import useSignUpForm from '../hooks/RegisterHooks';
 import {useUsers} from '../hooks/ApiHooks';
 import {makeStyles} from '@material-ui/core/styles';
@@ -103,7 +104,7 @@ const RegisterForm = () => {
             </div>
           </CardContent>
           <CardActions>
-            <Button variant="outlined" color="primary">Tallenna</Button>
+            <Button type="input" variant="outlined" color="primary">Tallenna</Button>
           </CardActions>
         </Card>
       </Box>

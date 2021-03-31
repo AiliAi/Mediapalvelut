@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {useContext} from 'react';
 import useLoginForm from '../hooks/LoginHooks';
 import {useLogin} from '../hooks/ApiHooks';
@@ -77,7 +78,7 @@ const LoginForm = ({history}) => {
             </div>
           </CardContent>
           <CardActions>
-            <Button variant="outlined" color="primary">Lähettää</Button>
+            <Button type="input" variant="outlined" color="primary">Lähettää</Button>
           </CardActions>
         </Card>
       </Box>
