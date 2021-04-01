@@ -50,7 +50,7 @@ const LoginForm = ({history}) => {
       <Box display="flex">
         <Card className={classes.root}>
           <CardContent m={2}>
-            <Typography component="h1" variant="h4">Login</Typography>
+            <Typography component="h1" variant="h4" gutterBottom>Login</Typography>
             <div>
               <InputLabel htmlFor="login">Username</InputLabel>
               <TextField

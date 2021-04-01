@@ -51,7 +51,7 @@ const RegisterForm = () => {
       <Box display="flex">
         <Card className={classes.root}>
           <CardContent m={2}>
-            <Typography component="h1" variant="h4">Register</Typography>
+            <Typography component="h1" variant="h4" gutterBottom>Register</Typography>
             <div>
               <InputLabel htmlFor="username">Username</InputLabel>
               <TextField
