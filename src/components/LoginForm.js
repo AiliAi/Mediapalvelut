@@ -1,29 +1,12 @@
-/* eslint-disable max-len */
 import {useContext} from 'react';
-import useLoginForm from '../hooks/LoginHooks';
+import useForm from '../hooks/FormHooks';
 import {useLogin} from '../hooks/ApiHooks';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 import {MediaContext} from '../contexts/MediaContext';
-import {makeStyles} from '@material-ui/core/styles';
-import {Button, TextField, InputLabel, Typography} from '@material-ui/core';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Box from '@material-ui/core/Box';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      maxWidth: 300,
-      margin: 'auto',
-    },
-  },
-}));
+import {Button, Grid, TextField, Typography} from '@material-ui/core';
 
 const LoginForm = ({history}) => {
-  const classes = useStyles();
   const [user, setUser] = useContext(MediaContext);
   const {postLogin} = useLogin();
 
@@ -32,7 +15,6 @@ const LoginForm = ({history}) => {
       const userdata = await postLogin(inputs);
       console.log('userdata', userdata);
       localStorage.setItem('token', userdata.token);
-      // localStorage.setItem('user', JSON.stringify(userdata.user));
       setUser(userdata.user);
       history.push('/home');
     } catch (e) {
@@ -40,54 +22,64 @@ const LoginForm = ({history}) => {
     }
   };
 
-  const {inputs, handleInputChange, handleSubmit} = useLoginForm(doLogin);
+  const {inputs, handleInputChange, handleSubmit} = useForm(doLogin, {
+    username: '',
+    password: '',
+  });
 
   console.log('LoginForm', inputs, user);
 
   return (
-    // eslint-disable-next-line max-len
-    <form onSubmit={handleSubmit} className={classes.root} style={{width: '100%'}}>
-      <Box display="flex">
-        <Card className={classes.root}>
-          <CardContent m={2}>
-            <Typography component="h1" variant="h4" gutterBottom>Login</Typography>
-            <div>
-              <InputLabel htmlFor="login">Username</InputLabel>
+    <Grid container>
+      <Grid item xs={12}>
+        <Typography
+          component="h1"
+          variant="h2"
+          gutterBottom>Login</Typography>
+      </Grid>
+      <Grid item xs={12}>
+        <form onSubmit={handleSubmit}>
+          <Grid container>
+            <Grid container item>
               <TextField
+                fullWidth
+                type="text"
                 name="username"
+                label="Username"
                 onChange={handleInputChange}
                 value={inputs.username}
-                required
-                id="login"
-                variant="outlined"
-                size="small"
               />
-            </div>
-            <div>
-              <InputLabel htmlFor="password">Password</InputLabel>
+            </Grid>
+            <Grid container item>
               <TextField
-                name="password"
+                fullWidth
                 type="password"
+                name="password"
+                label="Password"
                 onChange={handleInputChange}
                 value={inputs.password}
-                required
-                id="password"
-                variant="outlined"
-                size="small"
               />
-            </div>
-          </CardContent>
-          <CardActions>
-            <Button type="input" variant="outlined" color="primary">Lähettää</Button>
-          </CardActions>
-        </Card>
-      </Box>
-    </form>
+            </Grid>
+
+            <Grid container item>
+              <Button
+                fullWidth
+                color="primary"
+                type="submit"
+                variant="contained">
+              Login
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+      </Grid>
+    </Grid>
   );
 };
 
 LoginForm.propTypes = {
   history: PropTypes.object,
 };
+
 
 export default withRouter(LoginForm);

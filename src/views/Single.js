@@ -1,8 +1,13 @@
 import {uploadsUrl} from '../utils/variables';
 import PropTypes from 'prop-types';
-// eslint-disable-next-line max-len
-import {Card, Typography, CardActionArea, CardMedia, CardContent} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
+import {
+  Card,
+  CardActionArea, CardContent, CardMedia,
+  makeStyles,
+  Paper,
+  Typography,
+} from '@material-ui/core';
+import BackButton from '../components/BackButton';
 
 const useStyles = makeStyles({
   root: {
@@ -15,28 +20,34 @@ const useStyles = makeStyles({
 
 const Single = ({location}) => {
   const classes = useStyles();
+
   const file = location.state;
 
   return (
     <>
-      <Typography component="h1" variant="h2">{file.title}</Typography>
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={uploadsUrl + file.filename}
-            title={file.title}
-          />
-          <CardContent>
-            <Typography>
-              {file.description}
-            </Typography>
-            <Typography variant="subtitle2">
-              {file.user_id}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+      <BackButton />
+      <Typography
+        component="h1"
+        variant="h2"
+        gutterBottom
+      >
+        {file.title}
+      </Typography>
+      <Paper elevation="3">
+        <Card className={classes.root}>
+          <CardActionArea>
+            <CardMedia
+              className={classes.media}
+              image={uploadsUrl + file.filename}
+              title={file.title}
+            />
+            <CardContent>
+              <Typography gutterBottom>{file.description}</Typography>
+              <Typography variant="subtitle2">{file.user_id}</Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Paper>
     </>
   );
 };

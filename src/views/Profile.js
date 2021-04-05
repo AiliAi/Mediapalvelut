@@ -1,31 +1,53 @@
 import {useContext} from 'react';
 import {MediaContext} from '../contexts/MediaContext';
-import {makeStyles} from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+import {
+  Card,
+  CardContent,
+  List,
+  ListItem,
+  ListItemIcon, ListItemText,
+  Typography,
+} from '@material-ui/core';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import PersonIcon from '@material-ui/icons/Person';
+import EmailIcon from '@material-ui/icons/Email';
+import BackButton from '../components/BackButton';
 
 const Profile = () => {
-  const classes = useStyles();
-  // const user = JSON.parse(localStorage.getItem('user'));
   const [user] = useContext(MediaContext);
 
   return (
     <>
-      <h1>Profile</h1>
+      <BackButton />
+      <Typography
+        component="h1"
+        variant="h2"
+        gutterBottom>Profile</Typography>
       {user &&
-      <div className={classes.root}>
-        <Avatar alt="avatar picture" src="/static/images/avatar/1.jpg" />
-        <p>{user.full_name}</p>
-        <p>{user.email}</p>
-        <p>{user.username}</p>
-      </div>
+        <Card>
+          <CardContent>
+            <List>
+              <ListItem>
+                <ListItemIcon>
+                  <AccountBoxIcon />
+                </ListItemIcon>
+                <ListItemText primary={user.username} />
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <EmailIcon />
+                </ListItemIcon>
+                <ListItemText primary={user.email} />
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <PersonIcon />
+                </ListItemIcon>
+                <ListItemText primary={user.full_name} />
+              </ListItem>
+            </List>
+          </CardContent>
+        </Card>
       }
     </>
   );
