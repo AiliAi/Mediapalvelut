@@ -1,4 +1,4 @@
-Open [https://users.metropolia.fi/~ailip/react/forms/](https://users.metropolia.fi/~ailip/react/forms/) to view it in the browser.
+Open [https://users.metropolia.fi/~ailip/react/upload/](https://users.metropolia.fi/~ailip/react/upload/) to view it in the browser.
 
 # Getting Started with Create React App
 
