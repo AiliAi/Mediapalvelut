@@ -1,16 +1,16 @@
 import MediaTable from '../components/MediaTable';
 import {Typography} from '@material-ui/core';
 
-const Home = () => {
+const MyFiles = () => {
   return (
     <>
       <Typography
         component="h1"
         variant="h2"
-        gutterBottom>Home</Typography>
-      <MediaTable ownFiles={false}/>
+        gutterBottom>My files</Typography>
+      <MediaTable ownFiles={true}/>
     </>
   );
 };
 
-export default Home;
+export default MyFiles;

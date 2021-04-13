@@ -3,6 +3,8 @@ import {uploadsUrl} from '../utils/variables';
 import {Link as RouterLink} from 'react-router-dom';
 import {GridListTileBar, IconButton, makeStyles} from '@material-ui/core';
 import PageviewIcon from '@material-ui/icons/Pageview';
+import {useMedia} from '../hooks/ApiHooks';
+import {withRouter} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -10,8 +12,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MediaRow = ({file}) => {
+const MediaRow = ({file, ownFiles, history}) => {
   const classes = useStyles();
+  const {deleteMedia} = useMedia();
 
   let desc = {}; // jos kuva tallennettu ennen week4C, description ei ole JSONia
   try {
@@ -53,6 +56,36 @@ const MediaRow = ({file}) => {
             >
               <PageviewIcon fontSize="large"/>
             </IconButton>
+            <IconButton
+              aria-label={`modify file`}
+              className={classes.icon}
+              component={RouterLink}
+              to={
+                {
+                  pathname: '/modify',
+                  state: file,
+                }
+              }
+            >
+              <PageviewIcon fontSize="large"/>
+            </IconButton>
+            <IconButton
+              aria-label={`delete file`}
+              className={classes.icon}
+              onClick={()=>{
+                try {
+                  const conf = confirm('Do you really want to delete?');
+                  if (conf) {
+                    deleteMedia(file.file_id, localStorage.getItem('token'));
+                  }
+                  history.push('/profile');
+                } catch (e) {
+                  console.log(e.message);
+                }
+              }}
+            >
+              <PageviewIcon fontSize="large"/>
+            </IconButton>
           </>
         }
       />
@@ -62,6 +95,8 @@ const MediaRow = ({file}) => {
 
 MediaRow.propTypes = {
   file: PropTypes.object,
+  ownFiles: PropTypes.bool,
+  history: PropTypes.object,
 };
 
-export default MediaRow;
+export default withRouter(MediaRow);
